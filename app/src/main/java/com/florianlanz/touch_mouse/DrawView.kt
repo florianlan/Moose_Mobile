@@ -1,49 +1,69 @@
 package com.florianlanz.touch_mouse
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.view.KeyEvent
 import android.view.View
-import android.widget.TextView
 
 class DrawView(ctx: Context) : View(ctx) {
-    var size = 2
-    var paint = Paint()
+    private var sp: SharedPreferences
+    private var pTop: Int
+    private var pBot: Int
+    private var pLeft: Int
+    private var pRight: Int
+    private var cols: Int
+    private var rows: Int
 
-    constructor(ctx: Context, size: Int) : this(ctx) {
-        this.size = size
+    private var paint = Paint()
+
+    init {
+        sp = ctx.applicationContext.getSharedPreferences("grid", Context.MODE_PRIVATE)
+        pTop = sp.getInt("pad_top", 0)
+        pBot = sp.getInt("pad_bot", 100)
+        pLeft = sp.getInt("pad_left", 0)
+        pRight = sp.getInt("pad_right", 0)
+        cols = sp.getInt("cols", 3)
+        rows = sp.getInt("rows", 3)
+
     }
 
     private fun init() {
         paint.color = Color.BLACK
     }
 
-
     /**
      * draw the grid of selected grid size
      */
     override fun onDraw(canvas: Canvas) {
-        val width = this.width / size
-        for (i in 1 until size) {
-            //vertical lines
+        val width = (this.width - pLeft - pRight) / cols
+        val height = (this.height - pTop - pBot) / rows
+
+        //vertical lines
+        for (i in 0 until cols+1) {
             canvas.drawLine(
-                i * width.toFloat(),
-                0f,
-                i * width.toFloat(),
-                size * width.toFloat(),
+                i * width.toFloat() + pLeft,
+                pTop.toFloat(),
+                i * width.toFloat() + pLeft,
+                rows * height.toFloat() + pTop,
                 paint
             )
-            //horizontal lines
+
+        }
+
+        //horizontal lines
+        for (i in 0 until rows+1) {
             canvas.drawLine(
-                0f,
-                i * width.toFloat(),
-                size * width.toFloat(),
-                i * width.toFloat(),
+                pLeft.toFloat(),
+                i * height.toFloat() + pTop,
+                cols * width.toFloat() + pLeft,
+                i * height.toFloat() + pTop,
                 paint
             )
+
         }
     }
+
 
 }
