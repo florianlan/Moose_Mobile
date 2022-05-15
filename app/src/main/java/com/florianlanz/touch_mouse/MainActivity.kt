@@ -9,15 +9,6 @@ import android.view.View
 class MainActivity : AppCompatActivity() {
     private lateinit var drawView: DrawView
 
-    //TODO: outsource vars for the dimensions
-    private var pad_top: Int = 0
-    private var pad_bottom: Int = 50
-    private var pad_left: Int = 20
-    private var pad_right: Int = 20
-    private var columns: Int = 3
-    private var rows: Int = 3
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
