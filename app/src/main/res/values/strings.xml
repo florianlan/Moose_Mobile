@@ -1,7 +1,16 @@
 <resources>
     <string name="app_name">touch_mouse</string>
-    <string name="press_button">Press Button for Layout</string>
-    <string name="btn_2x2">2x2</string>
-    <string name="btn_3x3">3x3</string>
-    <string name="btn_4x4">4x4</string>
+    <string name="txt1">Welcome!</string>
+    <string name="grid">Grid</string>
+    <string name="settings">Settings</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="save_btn">Save</string>
+    <string name="set1">Padding Top:</string>
+    <string name="set2">Padding Bottom:</string>
+    <string name="set3">Padding Left:</string>
+    <string name="set4">Padding Right:</string>
+    <string name="set5">Colums:</string>
+    <string name="set6">Rows:</string>
+    <string name="hint">3</string>
+
 </resources>
