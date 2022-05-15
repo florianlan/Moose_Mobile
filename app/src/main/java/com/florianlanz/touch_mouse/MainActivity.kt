@@ -17,28 +17,28 @@ class MainActivity : AppCompatActivity() {
     private var columns: Int = 3
     private var rows: Int = 3
 
-    /**
-     * create grid
-     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
     }
 
+    /**
+     * create grid
+     */
     fun createGrid(view: View) {
         drawView = DrawView(this)
         drawView.setBackgroundColor(Color.WHITE)
         setContentView(drawView)
     }
 
+    /**
+     * start Settings activity
+     */
     fun settings(view: View) {
         startActivity(Intent(this, SettingsActivity::class.java))
 
     }
-
-
-
 
 }
