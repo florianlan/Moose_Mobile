@@ -12,5 +12,6 @@
     <string name="set5">Colums:</string>
     <string name="set6">Rows:</string>
     <string name="hint">3</string>
+    <string name="swt_show">Show Symbols:</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.florianlanz.touch_mouse
+package com.florianlanz.touch_mouse.views
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Switch
+import com.florianlanz.touch_mouse.R
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var sp: SharedPreferences //shared preferences
@@ -15,6 +17,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var etPadRight: EditText
     private lateinit var etCols: EditText
     private lateinit var etRows: EditText
+    private lateinit var swtShowSymbols: Switch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,7 @@ class SettingsActivity : AppCompatActivity() {
         etPadRight = findViewById(R.id.edit_right)
         etCols = findViewById(R.id.edit_cols)
         etRows = findViewById(R.id.edit_rows)
+        swtShowSymbols = findViewById(R.id.swt_showsym)
 
         //get valid settings from config
 
@@ -36,6 +40,7 @@ class SettingsActivity : AppCompatActivity() {
         etPadRight.setText(sp.getInt("pad_right", 0).toString())
         etCols.setText(sp.getInt("cols", 3).toString())
         etRows.setText(sp.getInt("rows", 3).toString())
+        swtShowSymbols.isChecked = sp.getBoolean("show_sym", false)
 
     }
 
@@ -47,6 +52,7 @@ class SettingsActivity : AppCompatActivity() {
         val right = etPadRight.text.toString().toInt()
         val cols = etCols.text.toString().toInt()
         val rows = etRows.text.toString().toInt()
+        val showSym = swtShowSymbols.isChecked
 
         val editor = sp.edit()
         editor.apply {
@@ -56,6 +62,7 @@ class SettingsActivity : AppCompatActivity() {
             putInt("pad_right", right)
             putInt("cols", cols)
             putInt("rows", rows)
+            putBoolean("show_sym", showSym)
             apply()
         }
 

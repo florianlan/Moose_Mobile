@@ -1,4 +1,4 @@
-package com.florianlanz.touch_mouse
+package com.florianlanz.touch_mouse.views
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -15,6 +15,7 @@ class DrawView(ctx: Context) : View(ctx) {
     private var pRight: Int
     private var cols: Int
     private var rows: Int
+    private var showSym: Boolean
 
     private var paint = Paint()
 
@@ -26,6 +27,7 @@ class DrawView(ctx: Context) : View(ctx) {
         pRight = sp.getInt("pad_right", 0)
         cols = sp.getInt("cols", 3)
         rows = sp.getInt("rows", 3)
+        showSym = sp.getBoolean("show_sym", false)
 
     }
 
@@ -63,6 +65,38 @@ class DrawView(ctx: Context) : View(ctx) {
             )
 
         }
+
+        //show Symbols in the Grid
+        if (showSym) {
+            paint.strokeWidth = 4f
+            val padHor = width/5f //padding for Symbols horizontally
+            val padVer = height/5f //padding for Symbols vertically
+            val offsetVer = padVer*3/(rows-1)
+            val offsetHor = padHor*3/(cols-1)
+
+            for (i in 0 until rows) {
+                for (j in 0 until cols) {
+                    //vertical line
+                    canvas.drawLine(
+                        j * width.toFloat() + j * offsetHor + pLeft + padHor,
+                        i * height.toFloat() + pTop + padVer,
+                        j * width.toFloat() + j * offsetHor + pLeft + padHor,
+                        (i+1) * height.toFloat() + pTop - padVer,
+                        paint
+                    )
+
+                    //horizontal line
+                    canvas.drawLine(
+                        j * width.toFloat() + pLeft + padHor,
+                        i * height.toFloat() + i * offsetVer + pTop + padVer,
+                        (j+1) * width.toFloat() + pLeft - padHor,
+                        i * height.toFloat() + i * offsetVer + pTop + padVer,
+                        paint
+                    )
+                }
+            }
+        }
+
     }
 
 }
