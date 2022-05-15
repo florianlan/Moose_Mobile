@@ -41,7 +41,7 @@ class DrawView(ctx: Context) : View(ctx) {
         val height = (this.height - pTop - pBot) / rows
 
         //vertical lines
-        for (i in 0 until cols+1) {
+        for (i in 0 until cols + 1) {
             canvas.drawLine(
                 i * width.toFloat() + pLeft,
                 pTop.toFloat(),
@@ -53,7 +53,7 @@ class DrawView(ctx: Context) : View(ctx) {
         }
 
         //horizontal lines
-        for (i in 0 until rows+1) {
+        for (i in 0 until rows + 1) {
             canvas.drawLine(
                 pLeft.toFloat(),
                 i * height.toFloat() + pTop,
@@ -64,6 +64,5 @@ class DrawView(ctx: Context) : View(ctx) {
 
         }
     }
-
 
 }
