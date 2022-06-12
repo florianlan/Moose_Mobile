@@ -92,7 +92,9 @@ public class Networker {
             }
 
         }
-    };
+    }
+
+    ;
 
     //-- Runnable for outgoing messages
     private class OutRunnable implements Runnable {

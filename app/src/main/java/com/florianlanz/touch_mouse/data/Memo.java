@@ -4,8 +4,11 @@
 package com.florianlanz.touch_mouse.data;
 
 import static com.florianlanz.touch_mouse.data.Consts.STRINGS.*;
+
 import android.util.Log;
+
 import androidx.annotation.NonNull;
+
 import java.util.Arrays;
 
 import com.florianlanz.touch_mouse.tools.Logs;
@@ -20,10 +23,11 @@ public class Memo {
 
     /**
      * Constructor
+     *
      * @param act Action (e.g. SCROLL)
-     * @param md Mode (e.g. DRAG)
-     * @param v1 String value1
-     * @param v2 String value2
+     * @param md  Mode (e.g. DRAG)
+     * @param v1  String value1
+     * @param v2  String value2
      */
     public Memo(String act, String md, String v1, String v2) {
         action = act;
@@ -34,10 +38,11 @@ public class Memo {
 
     /**
      * Constructor
+     *
      * @param act Action (e.g. SCROLL)
-     * @param md Mode (e.g. DRAG)
-     * @param v1 Double value Movement along X
-     * @param v2 Double value Movement along Y
+     * @param md  Mode (e.g. DRAG)
+     * @param v1  Double value Movement along X
+     * @param v2  Double value Movement along Y
      */
     public Memo(String act, String md, double v1, double v2) {
         action = act;
@@ -48,9 +53,10 @@ public class Memo {
 
     /**
      * Constructor
+     *
      * @param act Action (e.g. SCROLL)
-     * @param md Mode (e.g. DRAG)
-     * @param v1 Int value 1
+     * @param md  Mode (e.g. DRAG)
+     * @param v1  Int value 1
      */
     public Memo(String act, String md, Object v1) {
         action = act;
@@ -61,10 +67,11 @@ public class Memo {
 
     /**
      * Constructor
+     *
      * @param act Action (e.g. SCROLL)
-     * @param md Mode (e.g. DRAG)
-     * @param v1 Int value 1
-     * @param v2 Int value 2
+     * @param md  Mode (e.g. DRAG)
+     * @param v1  Int value 1
+     * @param v2  Int value 2
      */
     public Memo(String act, String md, int v1, int v2) {
         action = act;
@@ -75,10 +82,11 @@ public class Memo {
 
     /**
      * Constructor
+     *
      * @param act Action (e.g. SCROLL)
-     * @param md Mode (e.g. DRAG)
-     * @param v1 Int value 1
-     * @param v2 Int value 2
+     * @param md  Mode (e.g. DRAG)
+     * @param v1  Int value 1
+     * @param v2  Int value 2
      */
     public Memo(String act, String md, Object v1, Object v2) {
         action = act;
@@ -99,6 +107,7 @@ public class Memo {
 
     /**
      * Return action
+     *
      * @return String Action
      */
     public String getAction() {
@@ -107,6 +116,7 @@ public class Memo {
 
     /**
      * Return mode
+     *
      * @return String Mode
      */
     public String getMode() {
@@ -115,6 +125,7 @@ public class Memo {
 
     /**
      * Get the first value
+     *
      * @return String
      */
     public String getValue1() {
@@ -123,6 +134,7 @@ public class Memo {
 
     /**
      * Convert and return the X value
+     *
      * @return Int X value
      */
     public int getValue1Int() {
@@ -151,6 +163,7 @@ public class Memo {
 
     /**
      * Convert and return the value
+     *
      * @return Int Y Value
      */
     public int getValue2Int() {
@@ -167,6 +180,7 @@ public class Memo {
 
     /**
      * Get the Memo from String
+     *
      * @param mssg String
      * @return Memo
      */
@@ -192,6 +206,7 @@ public class Memo {
 
     /**
      * Get the String equivaluent
+     *
      * @return String
      */
     @Override

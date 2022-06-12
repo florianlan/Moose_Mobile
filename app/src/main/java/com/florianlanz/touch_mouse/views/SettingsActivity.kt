@@ -33,7 +33,6 @@ class SettingsActivity : AppCompatActivity() {
         swtShowSymbols = findViewById(R.id.swt_showsym)
 
         //get valid settings from config
-
         etPadTop.setText(sp.getInt("pad_top", 0).toString())
         etPadBot.setText(sp.getInt("pad_bot", 100).toString())
         etPadLeft.setText(sp.getInt("pad_left", 0).toString())

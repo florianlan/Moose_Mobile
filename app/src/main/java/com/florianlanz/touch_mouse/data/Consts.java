@@ -36,6 +36,7 @@ public class Consts {
     public enum TASK {
         VERTICAL, TWO_DIM;
         private static final TASK[] values = values();
+
         public static TASK get(int ord) {
             if (ord < values.length) return values[ord];
             else return values[0];
@@ -45,6 +46,7 @@ public class Consts {
     public enum TECHNIQUE {
         DRAG, RATE_BASED, FLICK, MOUSE;
         private static final TECHNIQUE[] values = values();
+
         public static TECHNIQUE get(int ord) {
             if (ord < values.length) return values[ord];
             else return values[0];

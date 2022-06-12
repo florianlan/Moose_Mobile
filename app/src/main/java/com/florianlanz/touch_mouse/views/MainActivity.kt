@@ -19,8 +19,8 @@ import com.florianlanz.touch_mouse.data.Consts.INTS
 
 class MainActivity : AppCompatActivity() {
     private lateinit var drawView: DrawView
-    private var dialogBuilder : AlertDialog.Builder? = null //for creating dialogs
-    private val dialog : AlertDialog? = null
+    private var dialogBuilder: AlertDialog.Builder? = null //for creating dialogs
+    private val dialog: AlertDialog? = null
 
     // Main Handler
     @SuppressLint("HandlerLeak")

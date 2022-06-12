@@ -53,6 +53,7 @@ public class Actioner {
 
     /**
      * Get the Singleton instance
+     *
      * @return Actioner instance
      */
     public static Actioner get() {
@@ -62,6 +63,7 @@ public class Actioner {
 
     /**
      * Set the config (got Memo from Netwroker)
+     *
      * @param memo Memo from Desktop
      */
     public void config(Memo memo) {
@@ -72,6 +74,7 @@ public class Actioner {
 
     /**
      * Process the event and create the action (to send to dekstop)
+     *
      * @param event MotionEvent to process and perform
      */
     public void act(MotionEvent event) {
@@ -148,7 +151,8 @@ public class Actioner {
 
     /**
      * Check if a pointer is leftmost
-     * @param me MortionEvent
+     *
+     * @param me           MortionEvent
      * @param pointerIndex index of the pointer to check
      * @return boolean
      */
@@ -158,6 +162,7 @@ public class Actioner {
 
     /**
      * Find the index of leftmost pointer
+     *
      * @param me MotionEvent
      * @return Index of the leftmost pointer
      */
@@ -180,6 +185,7 @@ public class Actioner {
 
     /**
      * Find the id of the leftmost pointer
+     *
      * @param me MotionEvent
      * @return Id of the leftmost pointer
      */
@@ -204,7 +210,8 @@ public class Actioner {
 
     /**
      * Truly GET the PointerCoords!
-     * @param me MotionEvent
+     *
+     * @param me           MotionEvent
      * @param pointerIndex Pointer index
      * @return PointerCoords
      */
@@ -216,6 +223,7 @@ public class Actioner {
 
     /**
      * Pixels to millimeters
+     *
      * @param px
      * @return
      */

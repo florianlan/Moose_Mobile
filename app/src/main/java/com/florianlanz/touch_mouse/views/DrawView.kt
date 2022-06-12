@@ -70,10 +70,10 @@ class DrawView(ctx: Context) : View(ctx) {
         //show Symbols in the Grid
         if (showSym) {
             paint.strokeWidth = 4f
-            val padHor = width/5f //padding for Symbols horizontally
-            val padVer = height/5f //padding for Symbols vertically
-            val offsetVer = padVer*3/(rows-1)
-            val offsetHor = padHor*3/(cols-1)
+            val padHor = width / 5f //padding for Symbols horizontally
+            val padVer = height / 5f //padding for Symbols vertically
+            val offsetVer = padVer * 3 / (rows - 1)
+            val offsetHor = padHor * 3 / (cols - 1)
 
             for (i in 0 until rows) {
                 for (j in 0 until cols) {
@@ -82,7 +82,7 @@ class DrawView(ctx: Context) : View(ctx) {
                         j * width.toFloat() + j * offsetHor + pLeft + padHor,
                         i * height.toFloat() + pTop + padVer,
                         j * width.toFloat() + j * offsetHor + pLeft + padHor,
-                        (i+1) * height.toFloat() + pTop - padVer,
+                        (i + 1) * height.toFloat() + pTop - padVer,
                         paint
                     )
 
@@ -90,7 +90,7 @@ class DrawView(ctx: Context) : View(ctx) {
                     canvas.drawLine(
                         j * width.toFloat() + pLeft + padHor,
                         i * height.toFloat() + i * offsetVer + pTop + padVer,
-                        (j+1) * width.toFloat() + pLeft - padHor,
+                        (j + 1) * width.toFloat() + pLeft - padHor,
                         i * height.toFloat() + i * offsetVer + pTop + padVer,
                         paint
                     )
