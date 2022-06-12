@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
+import android.widget.EditText
 
 class DrawView(ctx: Context) : View(ctx) {
     private var sp: SharedPreferences

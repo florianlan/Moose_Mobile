@@ -33,12 +33,12 @@ class SettingsActivity : AppCompatActivity() {
         swtShowSymbols = findViewById(R.id.swt_showsym)
 
         //get valid settings from config
-        etPadTop.setText(sp.getInt("pad_top", 0).toString())
-        etPadBot.setText(sp.getInt("pad_bot", 100).toString())
-        etPadLeft.setText(sp.getInt("pad_left", 0).toString())
-        etPadRight.setText(sp.getInt("pad_right", 0).toString())
+        etPadTop.setText(sp.getInt("pad_top", 50).toString())
+        etPadBot.setText(sp.getInt("pad_bot", 1500).toString())
+        etPadLeft.setText(sp.getInt("pad_left", 50).toString())
+        etPadRight.setText(sp.getInt("pad_right", 50).toString())
         etCols.setText(sp.getInt("cols", 3).toString())
-        etRows.setText(sp.getInt("rows", 3).toString())
+        etRows.setText(sp.getInt("rows", 2).toString())
         swtShowSymbols.isChecked = sp.getBoolean("show_sym", false)
 
     }
@@ -68,4 +68,6 @@ class SettingsActivity : AppCompatActivity() {
         finish()
 
     }
+
+
 }
