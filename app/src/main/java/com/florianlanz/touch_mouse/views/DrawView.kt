@@ -66,6 +66,7 @@ class DrawView(ctx: Context) : View(ctx) {
 
         }
 
+        //TODO: draw grid only when Symbols are shown too
         //show Symbols in the Grid
         if (showSym) {
             paint.strokeWidth = 4f

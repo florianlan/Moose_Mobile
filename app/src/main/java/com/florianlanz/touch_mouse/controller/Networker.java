@@ -1,16 +1,16 @@
-/*
 //Code from original Moose Project (Mahmoud Sadeghi)
 //https://github.com/mahci/Proto-Moose
 
 package com.florianlanz.touch_mouse.controller;
 
-import static at.aau.proto_moose.data.Consts.STRINGS.*;
-import static at.aau.proto_moose.data.Consts.INTS.*;
+import static com.florianlanz.touch_mouse.data.Consts.STRINGS.*;
+import static com.florianlanz.touch_mouse.data.Consts.INTS.*;
 
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,15 +23,16 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import at.aau.proto_moose.data.Memo;
-import at.aau.proto_moose.tools.Logs;
-import io.reactivex.rxjava3.core.Observable;
+import com.florianlanz.touch_mouse.data.Memo;
+import com.florianlanz.touch_mouse.views.MainActivity;
+//import at.aau.proto_moose.tools.Logs;
+//import io.reactivex.rxjava3.core.Observable;
 
 @SuppressWarnings("ALL")
 public class Networker {
     private String NAME = "Networker/";
     //-------------------------------------------------------------------------------
-    private final String DESKTOP_IP = "192.168.2.1";
+    private final String DESKTOP_IP = "192.168.8.10";
     private final int DESKTOP_PORT = 8000;
     private final long SUCCESS_VIBRATE_DUR = 500; // ms
     private final long CONN_THREAD_SLEEP_DUR = 2 * 1000; // ms
@@ -58,25 +59,24 @@ public class Networker {
             while (socket == null) {
                 try {
                     socket = new Socket(DESKTOP_IP, DESKTOP_PORT);
-
                     Log.d(TAG, "Connection successful!");
                     vibrate(SUCCESS_VIBRATE_DUR);
 
                     // Start the main activity part
                     Message closeDialogMssg = new Message();
-                    closeDialogMssg.what = 0;
+                    //closeDialogMssg.what = CLOSE_DLG;
                     mainThreadHandler.sendMessage(closeDialogMssg);
 
                     // Create buffers
                     inBR = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     outPW = new PrintWriter(new BufferedWriter(
-                            new OutputStreamWriter(socket.getOutputStream())),true);
+                            new OutputStreamWriter(socket.getOutputStream())), true);
 
                     // Send intro
                     sendMemo(new Memo(INTRO, INTRO, MOOSE, ""));
 
                     // Start receiving
-                    executor.execute(new InRunnable());
+                    // executor.execute(new InRunnable());
 
                 } catch (ConnectException e) { // Server offline
                     Log.d(TAG, "Server not responding. Trying again in 2 sec.");
@@ -116,7 +116,7 @@ public class Networker {
     }
 
     //-- Runnable for incoming messages
-    private class InRunnable implements Runnable {
+    /*private class InRunnable implements Runnable {
         String TAG = NAME + "InRunnable";
 
         @Override
@@ -130,7 +130,7 @@ public class Networker {
                         Log.d(TAG, "Message: " + mssg);
 
                         Memo memo = Memo.valueOf(mssg);
-                        Logs.d(TAG, "Action: " + memo.getAction());
+                        Log.d(TAG, "Action: " + memo.getAction());
                         switch (memo.getAction()) {
                             case CONFIG: {
                                 Actioner.get().config(memo);
@@ -153,36 +153,31 @@ public class Networker {
                 }
             }
         }
-    }
+    }*/
 
     // -------------------------------------------------------------------------------
 
-    */
-/**
+    /**
      * Get the singletong instance
+     *
      * @return instance
-     *//*
-
+     */
     public static Networker get() {
         if (instance == null) instance = new Networker();
         return instance;
     }
 
-    */
-/**
+    /**
      * Constructor
-     *//*
-
+     */
     private Networker() {
         // Init the ExecuterService for running the threads
         executor = Executors.newCachedThreadPool();
     }
 
-    */
-/**
+    /**
      * Connect to
-     *//*
-
+     */
     public void connect() {
         String TAG = NAME + "connect";
 
@@ -196,49 +191,42 @@ public class Networker {
         connect();
     }
 
-    */
-/**
+    /**
      * Send a memo to desktop
+     *
      * @param memo Memo
-     *//*
-
+     */
     public void sendMemo(Memo memo) {
         final String TAG = NAME + "sendMemmo";
         executor.execute(new OutRunnable(memo.toString()));
     }
 
 
-    */
-/**
+    /**
      * Vibrate for millisec
+     *
      * @param millisec time in milliseconds
-     *//*
-
+     */
     private void vibrate(long millisec) {
         if (vibrator != null) vibrator.vibrate(millisec);
     }
 
-    */
-/**
+    /**
      * Set the main handler (to MainActivity)
+     *
      * @param mainHandler Handler to MainActivity
-     *//*
-
+     */
     public void setMainHandler(Handler mainHandler) {
         mainThreadHandler = mainHandler;
     }
 
-    */
-/**
+    /**
      * Set the vibrator (called from the MainActivity)
+     *
      * @param vib Vibrator from system
-     *//*
-
+     */
     public void setVibrator(Vibrator vib) {
         vibrator = vib;
     }
 
-
-
 }
-*/
