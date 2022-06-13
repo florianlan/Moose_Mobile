@@ -10,7 +10,7 @@ import android.widget.Switch
 import com.florianlanz.touch_mouse.R
 
 class SettingsActivity : AppCompatActivity() {
-    private lateinit var sp: SharedPreferences //shared preferences
+    private lateinit var sp: SharedPreferences
     private lateinit var etPadTop: EditText
     private lateinit var etPadBot: EditText
     private lateinit var etPadLeft: EditText
@@ -18,6 +18,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var etCols: EditText
     private lateinit var etRows: EditText
     private lateinit var swtShowSymbols: Switch
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

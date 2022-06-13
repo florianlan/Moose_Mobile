@@ -6,7 +6,9 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
-import android.widget.EditText
+import com.florianlanz.touch_mouse.controller.Networker
+import com.florianlanz.touch_mouse.data.Consts.STRINGS
+import com.florianlanz.touch_mouse.data.Memo
 
 class DrawView(ctx: Context) : View(ctx) {
     private var sp: SharedPreferences
@@ -98,6 +100,9 @@ class DrawView(ctx: Context) : View(ctx) {
                 }
             }
         }
+
+        // Send INIT GRID size message to desktop
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.GRID, rows, cols))
 
     }
 

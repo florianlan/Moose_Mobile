@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,9 +23,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.florianlanz.touch_mouse.data.Memo;
-import com.florianlanz.touch_mouse.views.MainActivity;
-//import at.aau.proto_moose.tools.Logs;
-//import io.reactivex.rxjava3.core.Observable;
+import com.florianlanz.touch_mouse.tools.Logs;
+import com.florianlanz.touch_mouse.views.SettingsActivity;
 
 @SuppressWarnings("ALL")
 public class Networker {
@@ -40,7 +38,6 @@ public class Networker {
     private static Networker instance;
 
     private Socket socket;
-    //private Observable<Object> incomningObservable; // Observing the incoming mssg.
     private ExecutorService executor;
     private PrintWriter outPW;
     private BufferedReader inBR;
@@ -68,12 +65,12 @@ public class Networker {
                     mainThreadHandler.sendMessage(closeDialogMssg);
 
                     // Create buffers
-                    inBR = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//                    inBR = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     outPW = new PrintWriter(new BufferedWriter(
                             new OutputStreamWriter(socket.getOutputStream())), true);
 
                     // Send intro
-                    sendMemo(new Memo(INTRO, INTRO, MOOSE, ""));
+                    sendMemo(new Memo(INTRO, INTRO, "", ""));
 
                     // Start receiving
                     // executor.execute(new InRunnable());
@@ -92,9 +89,7 @@ public class Networker {
             }
 
         }
-    }
-
-    ;
+    };
 
     //-- Runnable for outgoing messages
     private class OutRunnable implements Runnable {
