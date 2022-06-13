@@ -9,6 +9,7 @@ public class Consts {
         public static final String SP = ";";
         public static final String INTRO = "INTRO";
         public static final String GRID = "GRID";
+        public static final String SIZE = "SIZE";
         public static final String MOOSE = "MOOSE";
         public final static String TECH = "TECH";
         public static final String SCROLL = "SCROLL";

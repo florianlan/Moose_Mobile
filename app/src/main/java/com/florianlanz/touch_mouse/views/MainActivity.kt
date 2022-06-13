@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
     private var dialogBuilder: AlertDialog.Builder? = null //for creating dialogs
     private val dialog: AlertDialog? = null
 
-    private var sizeX: Int = 0
-    private var sizeY: Int = 0
     private var xDown: Int = 0
     private var yDown: Int = 0
     private var xUp: Int = 0
@@ -47,6 +45,12 @@ class MainActivity : AppCompatActivity() {
     private var rows: Int = 0
 
     private val offset = 347
+
+    companion object {
+        var sizeX: Int = 0
+        var sizeY: Int = 0
+
+    }
 
     // Main Handler
     @SuppressLint("HandlerLeak")
@@ -132,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                     STRINGS.SCROLL,
                     STRINGS.DRAG,
                     getStringOfCoord(xDown, yDown),
-                    getStringOfCoord(sizeX, sizeY)
+                    getStringOfCoord(xUp, yUp)
                 )
                 Networker.get().sendMemo(memo)
                 Log.d("Memo", memo.toString())

@@ -70,7 +70,7 @@ public class Networker {
                             new OutputStreamWriter(socket.getOutputStream())), true);
 
                     // Send intro
-                    sendMemo(new Memo(INTRO, INTRO, "", ""));
+                    sendMemo(new Memo(INTRO, INTRO, "init", "init"));
 
                     // Start receiving
                     // executor.execute(new InRunnable());
