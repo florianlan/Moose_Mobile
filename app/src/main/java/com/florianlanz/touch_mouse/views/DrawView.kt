@@ -32,11 +32,9 @@ class DrawView(ctx: Context) : View(ctx) {
         rows = sp.getInt("rows", 3)
         showSym = sp.getBoolean("show_sym", false)
 
-    }
-
-    private fun init() {
         paint.color = Color.BLACK
     }
+
 
     /**
      * draw the grid of selected grid size
