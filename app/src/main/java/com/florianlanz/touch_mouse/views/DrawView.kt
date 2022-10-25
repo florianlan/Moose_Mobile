@@ -102,6 +102,7 @@ class DrawView(ctx: Context) : View(ctx) {
         // Send INIT GRID size message to desktop
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.GRID, rows, cols))
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SIZE, MainActivity.sizeX, MainActivity.sizeY))
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SYMBOLS, if (showSym) 1 else 0 , 0))
 
     }
 

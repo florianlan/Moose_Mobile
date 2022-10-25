@@ -28,6 +28,7 @@ public class Consts {
         public final static String TSK = "TSK";
         public final static String P_INIT = "P";
         public final static String END = "END";
+        public final static String SYMBOLS = "SYMBOLS";
     }
 
     public static class INTS {
