@@ -173,6 +173,41 @@
         app:layout_constraintStart_toEndOf="@+id/sett_top"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swt_showsym"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:text="@string/swt_show_sym"
+        android:textColor="@android:color/secondary_text_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/sett_rows" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swt_showlines"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:text="@string/swt_show_lines"
+        android:textColor="@android:color/secondary_text_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/swt_showsym" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swt_showfails"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:text="@string/swt_show_fails"
+        android:textColor="@android:color/secondary_text_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/swt_showlines" />
+
+
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
@@ -183,17 +218,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swt_showsym" />
-
-    <Switch
-        android:id="@+id/swt_showsym"
-        android:layout_width="196dp"
-        android:layout_height="48dp"
-        android:text="@string/swt_show"
-        android:textColor="@android:color/secondary_text_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/sett_rows" />
+        app:layout_constraintTop_toBottomOf="@+id/swt_showfails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

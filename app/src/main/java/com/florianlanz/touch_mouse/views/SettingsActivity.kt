@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Switch
+import androidx.appcompat.widget.SwitchCompat
 import com.florianlanz.touch_mouse.R
 
 class SettingsActivity : AppCompatActivity() {
@@ -17,7 +18,9 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var etPadRight: EditText
     private lateinit var etCols: EditText
     private lateinit var etRows: EditText
-    private lateinit var swtShowSymbols: Switch
+    private lateinit var swtShowSymbols: SwitchCompat
+    private lateinit var swtShowLines: SwitchCompat
+    private lateinit var swtShowFails: SwitchCompat
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +35,8 @@ class SettingsActivity : AppCompatActivity() {
         etCols = findViewById(R.id.edit_cols)
         etRows = findViewById(R.id.edit_rows)
         swtShowSymbols = findViewById(R.id.swt_showsym)
+        swtShowLines = findViewById(R.id.swt_showlines)
+        swtShowFails = findViewById(R.id.swt_showfails)
 
         //get valid settings from config
         etPadTop.setText(sp.getInt("pad_top", 50).toString())
@@ -41,6 +46,8 @@ class SettingsActivity : AppCompatActivity() {
         etCols.setText(sp.getInt("cols", 3).toString())
         etRows.setText(sp.getInt("rows", 2).toString())
         swtShowSymbols.isChecked = sp.getBoolean("show_sym", false)
+        swtShowLines.isChecked = sp.getBoolean("show_lines", false)
+        swtShowFails.isChecked = sp.getBoolean("show_fails", false)
 
     }
 
@@ -53,6 +60,8 @@ class SettingsActivity : AppCompatActivity() {
         val cols = etCols.text.toString().toInt()
         val rows = etRows.text.toString().toInt()
         val showSym = swtShowSymbols.isChecked
+        val showLines = swtShowLines.isChecked
+        val showFails = swtShowFails.isChecked
 
         val editor = sp.edit()
         editor.apply {
@@ -63,6 +72,8 @@ class SettingsActivity : AppCompatActivity() {
             putInt("cols", cols)
             putInt("rows", rows)
             putBoolean("show_sym", showSym)
+            putBoolean("show_lines", showLines)
+            putBoolean("show_fails", showFails)
             apply()
         }
 

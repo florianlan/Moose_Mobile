@@ -19,6 +19,8 @@ class DrawView(ctx: Context) : View(ctx) {
     private var cols: Int
     private var rows: Int
     private var showSym: Boolean
+    private var showLines: Boolean
+    private var showFails: Boolean
 
     private var paint = Paint()
 
@@ -31,6 +33,8 @@ class DrawView(ctx: Context) : View(ctx) {
         cols = sp.getInt("cols", 3)
         rows = sp.getInt("rows", 3)
         showSym = sp.getBoolean("show_sym", false)
+        showLines = sp.getBoolean("show_lines", false)
+        showFails = sp.getBoolean("show_fails", false)
 
         paint.color = Color.BLACK
     }
@@ -38,6 +42,7 @@ class DrawView(ctx: Context) : View(ctx) {
 
     /**
      * draw the grid of selected grid size
+     * looking at settings showSymbol and showLines to draw the canvas
      */
     override fun onDraw(canvas: Canvas) {
         val width = (this.width - pLeft - pRight) / cols
@@ -45,6 +50,7 @@ class DrawView(ctx: Context) : View(ctx) {
 
         //vertical lines
         for (i in 0 until cols + 1) {
+            if (!showLines && !((i == 0 || (i == cols)))) continue
             canvas.drawLine(
                 i * width.toFloat() + pLeft,
                 pTop.toFloat(),
@@ -57,6 +63,7 @@ class DrawView(ctx: Context) : View(ctx) {
 
         //horizontal lines
         for (i in 0 until rows + 1) {
+            if (!showLines && !((i == 0 || (i == rows)))) continue
             canvas.drawLine(
                 pLeft.toFloat(),
                 i * height.toFloat() + pTop,
@@ -67,7 +74,6 @@ class DrawView(ctx: Context) : View(ctx) {
 
         }
 
-        //TODO: draw grid only when Symbols are shown too
         //show Symbols in the Grid
         if (showSym) {
             paint.strokeWidth = 4f
@@ -102,7 +108,8 @@ class DrawView(ctx: Context) : View(ctx) {
         // Send INIT GRID size message to desktop
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.GRID, rows, cols))
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SIZE, MainActivity.sizeX, MainActivity.sizeY))
-        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SYMBOLS, if (showSym) 1 else 0 , 0))
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SYMBOLS, if (showSym) 1 else 0 , if (showLines) 1 else 0))
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.FAILS, if (showFails) 1 else 0 , 0))
 
     }
 
