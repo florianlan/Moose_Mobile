@@ -7,12 +7,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.graphics.Color
-import android.os.Bundle
-import android.os.Handler
-import android.os.Message
-import android.os.Vibrator
+import android.graphics.RectF
+import android.os.*
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.Window
@@ -23,8 +22,10 @@ import com.florianlanz.touch_mouse.controller.Networker
 import com.florianlanz.touch_mouse.data.Consts.INTS
 import com.florianlanz.touch_mouse.data.Consts.STRINGS
 import com.florianlanz.touch_mouse.data.Memo
+import com.florianlanz.touch_mouse.listener.SingleClickListener
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var drawView: DrawView
     private var dialogBuilder: AlertDialog.Builder? = null //for creating dialogs
     private val dialog: AlertDialog? = null
@@ -104,6 +105,30 @@ class MainActivity : AppCompatActivity() {
         drawView.setBackgroundColor(Color.WHITE)
         setContentView(drawView)
 
+        drawView.setOnTouchListener(SingleClickListener({
+            event: MotionEvent ->
+                xUp = event.getX(event.getPointerId(event.actionIndex)).toInt() - left
+                yUp = event.getY(event.getPointerId(event.actionIndex)).toInt() - /*offset -*/ top
+                Log.d("Coordinate_Up", "$xUp;$yUp")
+                //save time of eventUp
+
+                val memo = Memo(
+                    STRINGS.SCROLL,
+                    STRINGS.DRAG,
+                    getStringOfCoord(xUp, yUp),
+                    getStringOfCoord(xUp, yUp)
+                )
+                Networker.get().sendMemo(memo)
+                Log.d("Memo", memo.toString())
+
+                //vibration on click event
+                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
+
+
+
+        }, RectF(left.toFloat(), top.toFloat(), left.toFloat() + sizeX, top.toFloat() + sizeY)))
+
     }
 
     /**
@@ -112,39 +137,6 @@ class MainActivity : AppCompatActivity() {
     fun settings(view: View) {
         startActivity(Intent(this, SettingsActivity::class.java))
 
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        val x: Int = event!!.x.toInt()
-        val y: Int = event.y.toInt()
-
-        // Send touch event to desktop app
-        when (event.action) {
-            MotionEvent.ACTION_DOWN -> {
-                xDown = x - left
-                yDown = y - offset - top
-                Log.d("Koordinate_Down", "$xDown;$yDown")
-                //save time of eventDown
-            }
-            MotionEvent.ACTION_UP -> {
-                xUp = x - left
-                yUp = y - offset - top
-                Log.d("Koordinate_Up", "$xDown;$yDown")
-                //save time of eventUp
-
-                var memo = Memo(
-                    STRINGS.SCROLL,
-                    STRINGS.DRAG,
-                    getStringOfCoord(xDown, yDown),
-                    getStringOfCoord(xUp, yUp)
-                )
-                Networker.get().sendMemo(memo)
-                Log.d("Memo", memo.toString())
-
-            }
-        }
-
-        return super.onTouchEvent(event)
     }
 
     private fun getStringOfCoord(x: Int, y: Int): String {
