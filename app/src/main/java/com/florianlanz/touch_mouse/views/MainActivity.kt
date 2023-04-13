@@ -9,9 +9,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.RectF
 import android.os.*
-import android.util.DisplayMetrics
 import android.util.Log
-import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.Window
@@ -44,8 +42,6 @@ class MainActivity : AppCompatActivity() {
     private var right: Int = 0
     private var cols: Int = 0
     private var rows: Int = 0
-
-    private val offset = 347
 
     companion object {
         var sizeX: Int = 0
@@ -86,9 +82,13 @@ class MainActivity : AppCompatActivity() {
         screenX = Resources.getSystem().displayMetrics.widthPixels
         screenY = Resources.getSystem().displayMetrics.heightPixels
 
+        // Subtract the height of the status bar and navigation bar
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        val statusBarHeight = if (resourceId > 0) resources.getDimensionPixelSize(resourceId) else 0
+
         // Calculate GridSize
         sizeX = screenX - left - right
-        sizeY = screenY - top - bot - offset
+        sizeY = screenY - top - bot - statusBarHeight
 
 
         // Connecting to desktop...
@@ -108,24 +108,32 @@ class MainActivity : AppCompatActivity() {
         drawView.setOnTouchListener(SingleClickListener({
             event: MotionEvent ->
                 xUp = event.getX(event.getPointerId(event.actionIndex)).toInt() - left
-                yUp = event.getY(event.getPointerId(event.actionIndex)).toInt() - /*offset -*/ top
+                yUp = event.getY(event.getPointerId(event.actionIndex)).toInt() - top
                 Log.d("Coordinate_Up", "$xUp;$yUp")
                 //save time of eventUp
 
                 val memo = Memo(
-                    STRINGS.SCROLL,
-                    STRINGS.DRAG,
-                    getStringOfCoord(xUp, yUp),
-                    getStringOfCoord(xUp, yUp)
-                )
-                Networker.get().sendMemo(memo)
-                Log.d("Memo", memo.toString())
+                        STRINGS.SCROLL,
+                        STRINGS.DRAG,
+                        getStringOfCoord(xUp, yUp),
+                        getStringOfCoord(xUp, yUp)
+                    )
+                    Networker.get().sendMemo(memo)
+                    Log.d("Memo", memo.toString())
 
+/*
                 //vibration on click event
                 val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
                 vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
+*/
 
+                // Get the Vibrator service
+                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
+                // Check if the device supports vibration
+                if (vibrator.hasVibrator()) {
+                    vibrator.vibrate(100)
+                }
 
         }, RectF(left.toFloat(), top.toFloat(), left.toFloat() + sizeX, top.toFloat() + sizeY)))
 
