@@ -73,12 +73,12 @@ class MainActivity : AppCompatActivity() {
 
         // Get Instances of config
         sp = applicationContext.getSharedPreferences("grid", Context.MODE_PRIVATE)
-        top = sp.getInt("pad_top", 0)
-        bot = sp.getInt("pad_bot", 100)
-        left = sp.getInt("pad_left", 0)
-        right = sp.getInt("pad_right", 0)
+        top = sp.getInt("pad_top", 50)
+        bot = sp.getInt("pad_bot", 500)
+        left = sp.getInt("pad_left", 50)
+        right = sp.getInt("pad_right", 50)
         cols = sp.getInt("cols", 3)
-        rows = sp.getInt("rows", 3)
+        rows = sp.getInt("rows", 2)
         screenX = Resources.getSystem().displayMetrics.widthPixels
         screenY = Resources.getSystem().displayMetrics.heightPixels
 

@@ -40,14 +40,14 @@ class SettingsActivity : AppCompatActivity() {
 
         //get valid settings from config
         etPadTop.setText(sp.getInt("pad_top", 50).toString())
-        etPadBot.setText(sp.getInt("pad_bot", 1500).toString())
+        etPadBot.setText(sp.getInt("pad_bot", 500).toString())
         etPadLeft.setText(sp.getInt("pad_left", 50).toString())
         etPadRight.setText(sp.getInt("pad_right", 50).toString())
         etCols.setText(sp.getInt("cols", 3).toString())
         etRows.setText(sp.getInt("rows", 2).toString())
-        swtShowSymbols.isChecked = sp.getBoolean("show_sym", false)
-        swtShowLines.isChecked = sp.getBoolean("show_lines", false)
-        swtShowFails.isChecked = sp.getBoolean("show_fails", false)
+        swtShowSymbols.isChecked = sp.getBoolean("show_sym", true)
+        swtShowLines.isChecked = sp.getBoolean("show_lines", true)
+        swtShowFails.isChecked = sp.getBoolean("show_fails", true)
 
     }
 
