@@ -21,6 +21,7 @@ class DrawView(ctx: Context) : View(ctx) {
     private var showSym: Boolean
     private var showLines: Boolean
     private var showFails: Boolean
+    private var showDots: Boolean
 
     private var paint = Paint()
 
@@ -35,6 +36,7 @@ class DrawView(ctx: Context) : View(ctx) {
         showSym = sp.getBoolean("show_sym", false)
         showLines = sp.getBoolean("show_lines", false)
         showFails = sp.getBoolean("show_fails", false)
+        showDots = sp.getBoolean("show_dots", false)
 
         paint.color = Color.BLACK
     }

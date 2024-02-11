@@ -173,6 +173,35 @@
         app:layout_constraintStart_toEndOf="@+id/sett_top"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/sett_dotsize"
+        android:layout_width="158dp"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:text="@string/dotsize"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/edit_dotsize"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sett_rows" />
+
+    <EditText
+        android:id="@+id/edit_dotsize"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/sett_top"
+        app:layout_constraintTop_toBottomOf="@+id/edit_rows"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swt_showsym"
@@ -183,7 +212,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/sett_rows" />
+        app:layout_constraintTop_toBottomOf="@+id/sett_dotsize" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swt_showlines"
@@ -208,6 +237,18 @@
         app:layout_constraintTop_toBottomOf="@+id/swt_showlines" />
 
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swt_showdots"
+        android:layout_width="238dp"
+        android:layout_height="48dp"
+        android:text="@string/swt_show_dots"
+        android:textColor="@android:color/secondary_text_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/swt_showfails" />
+
+
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
@@ -218,6 +259,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swt_showfails" />
+        app:layout_constraintTop_toBottomOf="@+id/swt_showdots" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
