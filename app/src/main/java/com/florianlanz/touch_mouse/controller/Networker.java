@@ -4,7 +4,6 @@
 package com.florianlanz.touch_mouse.controller;
 
 import static com.florianlanz.touch_mouse.data.Consts.STRINGS.*;
-import static com.florianlanz.touch_mouse.data.Consts.INTS.*;
 
 import android.os.Handler;
 import android.os.Message;
@@ -14,7 +13,6 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ConnectException;
@@ -23,8 +21,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.florianlanz.touch_mouse.data.Memo;
-import com.florianlanz.touch_mouse.tools.Logs;
-import com.florianlanz.touch_mouse.views.SettingsActivity;
 
 @SuppressWarnings("ALL")
 public class Networker {
@@ -111,48 +107,6 @@ public class Networker {
             }
         }
     }
-
-    //-- Runnable for incoming messages
-    /*private class InRunnable implements Runnable {
-        String TAG = NAME + "InRunnable";
-
-        @Override
-        public void run() {
-            Log.d(TAG, "Reading from server...");
-            String mssg;
-            while (inBR != null) {
-                try {
-                    mssg = inBR.readLine();
-                    if (mssg != null) { // Connection is lost
-                        Log.d(TAG, "Message: " + mssg);
-
-                        Memo memo = Memo.valueOf(mssg);
-                        Log.d(TAG, "Action: " + memo.getAction());
-                        switch (memo.getAction()) {
-                            case CONFIG: {
-                                Actioner.get().config(memo);
-                                break;
-                            }
-
-                            case LOG: {
-                                Logger.get().setLogInfo(memo);
-                            }
-                        }
-
-                    } else {
-                        resetConnection();
-                        return;
-                    }
-                } catch (IOException e) {
-                    Log.d(TAG, "Problem in reading from server. Reseting connection...");
-                    e.printStackTrace();
-                    resetConnection();
-                }
-            }
-        }
-    }*/
-
-    // -------------------------------------------------------------------------------
 
     /**
      * Get the singletong instance

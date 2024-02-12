@@ -1,7 +1,5 @@
 package com.florianlanz.touch_mouse.tools;
 
-import android.util.Log;
-
 /**
  * A kinda wrapper class for Log
  */

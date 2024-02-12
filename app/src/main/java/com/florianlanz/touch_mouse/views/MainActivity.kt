@@ -10,7 +10,6 @@ import android.graphics.Color
 import android.graphics.RectF
 import android.os.*
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.Window
 import android.widget.Toast
@@ -49,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         var sizeY: Int = 0
 
     }
-
     // Main Handler
     @SuppressLint("HandlerLeak")
     private val mainHandler: Handler = object : Handler() {
@@ -116,8 +114,8 @@ class MainActivity : AppCompatActivity() {
 
             //TODO: test if down and up coordinates works
             val memo = Memo(
-                STRINGS.SCROLL,
-                STRINGS.DRAG,
+                STRINGS.EVENT,
+                STRINGS.TAP,
                 getStringOfCoord(xDown, yDown),
                 getStringOfCoord(xUp, yUp)
             )

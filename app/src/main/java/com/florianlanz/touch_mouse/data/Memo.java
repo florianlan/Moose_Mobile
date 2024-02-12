@@ -174,10 +174,6 @@ public class Memo {
         }
     }
 
-    public boolean isStopMemo() {
-        return getValue1().equals(STOP);
-    }
-
     /**
      * Get the Memo from String
      *
