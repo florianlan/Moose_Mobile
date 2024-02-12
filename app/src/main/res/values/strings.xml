@@ -16,6 +16,6 @@
     <string name="swt_show_lines">Show Lines:</string>
     <string name="swt_show_fails">Show Trial Fails:</string>
     <string name="swt_show_dots">Show Dots:</string>
-    <string name="dotsize">Dot Size:</string>
+    <string name="dotradius">Dot Size:</string>
 
 </resources>

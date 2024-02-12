@@ -22,7 +22,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var swtShowLines: SwitchCompat
     private lateinit var swtShowFails: SwitchCompat
     private lateinit var swtShowDots: SwitchCompat
-    private lateinit var dotSize: EditText
+    private lateinit var dotRadius: EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class SettingsActivity : AppCompatActivity() {
         swtShowLines = findViewById(R.id.swt_showlines)
         swtShowFails = findViewById(R.id.swt_showfails)
         swtShowDots = findViewById(R.id.swt_showdots)
-        dotSize = findViewById(R.id.edit_dotsize)
+        dotRadius = findViewById(R.id.edit_dotsize)
 
         //get valid settings from config
         etPadTop.setText(sp.getInt("pad_top", 50).toString())
@@ -49,7 +49,7 @@ class SettingsActivity : AppCompatActivity() {
         etPadRight.setText(sp.getInt("pad_right", 50).toString())
         etCols.setText(sp.getInt("cols", 3).toString())
         etRows.setText(sp.getInt("rows", 2).toString())
-        dotSize.setText(sp.getInt("dot_size", 2).toString())
+        dotRadius.setText(sp.getInt("dot_radius", 2).toString())
         swtShowSymbols.isChecked = sp.getBoolean("show_sym", true)
         swtShowLines.isChecked = sp.getBoolean("show_lines", true)
         swtShowFails.isChecked = sp.getBoolean("show_fails", true)
@@ -65,7 +65,7 @@ class SettingsActivity : AppCompatActivity() {
         val right = etPadRight.text.toString().toInt()
         val cols = etCols.text.toString().toInt()
         val rows = etRows.text.toString().toInt()
-        val size = dotSize.text.toString().toInt()
+        val size = dotRadius.text.toString().toInt()
         val showSym = swtShowSymbols.isChecked
         val showLines = swtShowLines.isChecked
         val showFails = swtShowFails.isChecked
@@ -79,7 +79,7 @@ class SettingsActivity : AppCompatActivity() {
             putInt("pad_right", right)
             putInt("cols", cols)
             putInt("rows", rows)
-            putInt("dot_size", size)
+            putInt("dot_radius", size)
             putBoolean("show_sym", showSym)
             putBoolean("show_lines", showLines)
             putBoolean("show_fails", showFails)

@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
     private var yDown: Int = 0
     private var xUp: Int = 0
     private var yUp: Int = 0
-    private var screenX: Int = 0
-    private var screenY: Int = 0
+    private var screenW: Int = 0
+    private var screenH: Int = 0
 
     private lateinit var sp: SharedPreferences //shared preferences
     private var top: Int = 0
@@ -42,6 +42,13 @@ class MainActivity : AppCompatActivity() {
     private var right: Int = 0
     private var cols: Int = 0
     private var rows: Int = 0
+
+    // Two rows vars
+//    private lateinit var row1Rect: RectF
+//    private lateinit var row2Rect: RectF
+    private val expRows = intArrayOf(1, 3)
+//    private var cellSize: Float = 0.0f // px (calculated by scrnW / nCols)
+
 
     companion object {
         var sizeX: Int = 0
@@ -74,22 +81,31 @@ class MainActivity : AppCompatActivity() {
         // Get Instances of config
         sp = applicationContext.getSharedPreferences("grid", Context.MODE_PRIVATE)
         top = sp.getInt("pad_top", 50)
-        bot = sp.getInt("pad_bot", 500)
+        bot = sp.getInt("pad_bot", 800)
         left = sp.getInt("pad_left", 50)
         right = sp.getInt("pad_right", 50)
-        cols = sp.getInt("cols", 3)
-        rows = sp.getInt("rows", 2)
-        screenX = Resources.getSystem().displayMetrics.widthPixels
-        screenY = Resources.getSystem().displayMetrics.heightPixels
+        cols = sp.getInt("cols", 5)
+        rows = sp.getInt("rows", 6)
 
         // Subtract the height of the status bar and navigation bar
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
         val statusBarHeight = if (resourceId > 0) resources.getDimensionPixelSize(resourceId) else 0
 
-        // Calculate GridSize
-        sizeX = screenX - left - right
-        sizeY = screenY - top - bot - statusBarHeight
+        screenW = Resources.getSystem().displayMetrics.widthPixels
+        screenH = Resources.getSystem().displayMetrics.heightPixels
 
+        // Calculate GridSize
+        sizeX = screenW - left - right
+        sizeY = screenH - top - bot - statusBarHeight
+
+        // Fill shared Preferences
+        val editor = sp.edit()
+        //TODO: implement logic to set active rows
+        editor.apply {
+            putInt("row1", expRows[0])
+            putInt("row2", expRows[1])
+            apply()
+        }
 
         // Connecting to desktop...
         Toast.makeText(this, "connecting to desktop...", Toast.LENGTH_LONG).show()
