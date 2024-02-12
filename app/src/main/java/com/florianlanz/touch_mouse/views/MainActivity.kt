@@ -44,11 +44,7 @@ class MainActivity : AppCompatActivity() {
     private var rows: Int = 0
 
     // Two rows vars
-//    private lateinit var row1Rect: RectF
-//    private lateinit var row2Rect: RectF
     private val expRows = intArrayOf(1, 3)
-//    private var cellSize: Float = 0.0f // px (calculated by scrnW / nCols)
-
 
     companion object {
         var sizeX: Int = 0

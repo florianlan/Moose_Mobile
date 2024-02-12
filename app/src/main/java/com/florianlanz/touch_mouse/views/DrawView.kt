@@ -68,12 +68,12 @@ class DrawView(ctx: Context) : View(ctx) {
         val rect1 = RectF(beginX, row1TopY, endX, row1BottomY)
         val rect2 = RectF(beginX, row2TopY, endX, row2BottomY)
 
-        // Draw row 1 & 2
-        canvas.drawRect(rect1, paint)
-        canvas.drawRect(rect2, paint)
-
         // Draw separations of row 1
         if (showLines) {
+            // Draw row 1 & 2
+            canvas.drawRect(rect1, paint)
+            canvas.drawRect(rect2, paint)
+
             for (i in 1 until cols) {
                 // vertical lines row 1
                 canvas.drawLine(
@@ -93,6 +93,11 @@ class DrawView(ctx: Context) : View(ctx) {
                     paint
                 )
             }
+            canvas.drawRect(beginX, pTop.toFloat(), endX, pTop.toFloat() + rows * cellHeight, paint)
+
+        } else {
+            // Draw Test area
+            canvas.drawRect(beginX, pTop.toFloat(), endX, pTop.toFloat() + rows * cellHeight, paint)
         }
 
         // show Symbols for row 1 & 2
