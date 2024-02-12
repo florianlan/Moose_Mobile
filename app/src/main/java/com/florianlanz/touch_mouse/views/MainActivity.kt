@@ -42,9 +42,6 @@ class MainActivity : AppCompatActivity() {
     private var left: Int = 0
     private var right: Int = 0
 
-    // Two rows vars
-    private val expRows = intArrayOf(1, 3)
-
     private lateinit var singleClickListener: SingleClickListener
 
     companion object {
@@ -92,15 +89,6 @@ class MainActivity : AppCompatActivity() {
         // Calculate GridSize
         sizeX = screenW - left - right
         sizeY = screenH - top - bot - statusBarHeight
-
-        // Fill shared Preferences
-        val editor = sp.edit()
-        //TODO: implement logic to set active rows
-        editor.apply {
-            putInt("row1", expRows[0])
-            putInt("row2", expRows[1])
-            apply()
-        }
 
         // Connecting to desktop...
         Toast.makeText(this, "connecting to desktop...", Toast.LENGTH_LONG).show()

@@ -191,7 +191,7 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/hint"
+        android:hint="@string/hint2"
         android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
@@ -199,6 +199,35 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/sett_top"
         app:layout_constraintTop_toBottomOf="@+id/edit_rows"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+
+    <TextView
+        android:id="@+id/sett_testid"
+        android:layout_width="158dp"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:text="@string/testid"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/edit_testid"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sett_dotsize" />
+
+    <EditText
+        android:id="@+id/edit_testid"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint1"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/sett_top"
+        app:layout_constraintTop_toBottomOf="@+id/edit_dotsize"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
 
@@ -212,7 +241,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/sett_dotsize" />
+        app:layout_constraintTop_toBottomOf="@+id/sett_testid" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/swt_showlines"
@@ -253,7 +282,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:onClick="saveSettings"
         android:text="@string/save_btn"
         app:layout_constraintEnd_toEndOf="parent"

@@ -25,6 +25,8 @@ class DrawView(ctx: Context) : View(ctx) {
     private var showFails: Boolean
     private var showDots: Boolean
 
+    private var testId: Int
+
     private var paint: Paint = Paint()
 
     init {
@@ -35,13 +37,17 @@ class DrawView(ctx: Context) : View(ctx) {
         pRight = sp.getInt("pad_right", 0)
         cols = sp.getInt("cols", 3)
         rows = sp.getInt("rows", 3)
-        row1 = sp.getInt("row1", 1)
-        row2 = sp.getInt("row2", 3)
+/*        row1 = sp.getInt("row1", 1)
+        row2 = sp.getInt("row2", 3)*/
         dotRadius = sp.getInt("dot_radius", 3)
         showSym = sp.getBoolean("show_sym", false)
         showLines = sp.getBoolean("show_lines", false)
         showFails = sp.getBoolean("show_fails", false)
         showDots = sp.getBoolean("show_dots", false)
+        testId = sp.getInt("test_id", 1)
+
+        this.row1 = getActiveRowsByTestId(testId).first
+        this.row2 = getActiveRowsByTestId(testId).second
 
         paint.style = Paint.Style.STROKE
         paint.color = Color.BLACK
@@ -178,13 +184,26 @@ class DrawView(ctx: Context) : View(ctx) {
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SYMBOLS, if (showSym) 1 else 0 , if (showLines) 1 else 0))
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.FAILS, if (showFails) 1 else 0 , 0))
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.ROWS_ACTIVE, row1, row2))
-        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.DOT_RADIUS_PIXEL, mmToPixels(dotRadius.toFloat()), 0))
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.TEST_ID, testId, 0))
 
     }
 
+    /**
+     * convert mm to amount of pixels
+     */
     private fun mmToPixels(mm: Float): Float {
         val metrics = resources.displayMetrics
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM, mm, metrics)
     }
 
+    /**
+     * get the active rows for a specific testId
+     */
+    private fun getActiveRowsByTestId(testId: Int): Pair<Int, Int> {
+        return when (testId) {
+            1 -> Pair(1, 3)
+            2 -> Pair(2, 4)
+            else -> throw IllegalArgumentException("Invalid testId")
+        }
+    }
 }

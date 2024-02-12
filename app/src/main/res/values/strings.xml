@@ -12,10 +12,13 @@
     <string name="set5">Colums:</string>
     <string name="set6">Rows:</string>
     <string name="hint">3</string>
+    <string name="hint1">1</string>
+    <string name="hint2">2</string>
     <string name="swt_show_sym">Show Symbols:</string>
     <string name="swt_show_lines">Show Lines:</string>
     <string name="swt_show_fails">Show Trial Fails:</string>
     <string name="swt_show_dots">Show Dots:</string>
     <string name="dotradius">Dot Size:</string>
+    <string name="testid">Test ID:</string>
 
 </resources>
