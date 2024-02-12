@@ -20,6 +20,7 @@ import com.florianlanz.touch_mouse.controller.Networker
 import com.florianlanz.touch_mouse.data.Consts.INTS
 import com.florianlanz.touch_mouse.data.Consts.STRINGS
 import com.florianlanz.touch_mouse.data.Memo
+import com.florianlanz.touch_mouse.listener.EventWithCoordinates
 import com.florianlanz.touch_mouse.listener.SingleClickListener
 
 class MainActivity : AppCompatActivity() {
@@ -40,11 +41,11 @@ class MainActivity : AppCompatActivity() {
     private var bot: Int = 0
     private var left: Int = 0
     private var right: Int = 0
-    private var cols: Int = 0
-    private var rows: Int = 0
 
     // Two rows vars
     private val expRows = intArrayOf(1, 3)
+
+    private lateinit var singleClickListener: SingleClickListener
 
     companion object {
         var sizeX: Int = 0
@@ -80,8 +81,6 @@ class MainActivity : AppCompatActivity() {
         bot = sp.getInt("pad_bot", 800)
         left = sp.getInt("pad_left", 50)
         right = sp.getInt("pad_right", 50)
-        cols = sp.getInt("cols", 5)
-        rows = sp.getInt("rows", 6)
 
         // Subtract the height of the status bar and navigation bar
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
@@ -117,21 +116,25 @@ class MainActivity : AppCompatActivity() {
         drawView.setBackgroundColor(Color.WHITE)
         setContentView(drawView)
 
-        drawView.setOnTouchListener(SingleClickListener({
-            event: MotionEvent ->
-                xUp = event.getX(event.getPointerId(event.actionIndex)).toInt() - left
-                yUp = event.getY(event.getPointerId(event.actionIndex)).toInt() - top
-                Log.d("Coordinate_Up", "$xUp;$yUp")
-                //save time of eventUp
+        val singleClickListener = SingleClickListener({
+                event: EventWithCoordinates ->
+            xDown = event.xDown - left
+            yDown = event.yDown - top
+            xUp = event.xUp - left
+            yUp = event.yUp - top
 
-                val memo = Memo(
-                        STRINGS.SCROLL,
-                        STRINGS.DRAG,
-                        getStringOfCoord(xUp, yUp),
-                        getStringOfCoord(xUp, yUp)
-                    )
-                    Networker.get().sendMemo(memo)
-                    Log.d("Memo", memo.toString())
+            Log.d("Coordinates", "down: $xDown;$yDown up: $xUp;$yUp")
+            //save time of eventUp
+
+            //TODO: test if down and up coordinates works
+            val memo = Memo(
+                STRINGS.SCROLL,
+                STRINGS.DRAG,
+                getStringOfCoord(xDown, yDown),
+                getStringOfCoord(xUp, yUp)
+            )
+            Networker.get().sendMemo(memo)
+            Log.d("Memo", memo.toString())
 
 /*
                 //vibration on click event
@@ -139,15 +142,17 @@ class MainActivity : AppCompatActivity() {
                 vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
 */
 
-                // Get the Vibrator service
-                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            // Get the Vibrator service
+            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
-                // Check if the device supports vibration
-                if (vibrator.hasVibrator()) {
-                    vibrator.vibrate(100)
-                }
+            // Check if the device supports vibration
+            if (vibrator.hasVibrator()) {
+                vibrator.vibrate(100)
+            }
 
-        }, RectF(left.toFloat(), top.toFloat(), left.toFloat() + sizeX, top.toFloat() + sizeY)))
+        }, RectF(left.toFloat(), top.toFloat(), left.toFloat() + sizeX, top.toFloat() + sizeY))
+
+        drawView.setOnTouchListener(singleClickListener)
 
     }
 

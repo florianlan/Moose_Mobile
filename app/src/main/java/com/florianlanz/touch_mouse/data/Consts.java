@@ -32,6 +32,7 @@ public class Consts {
         public final static String FAILS = "FAILS";
         public final static String ROWS_ACTIVE = "ROWS_ACTIVE";
         public final static String DOT_RADIUS_PIXEL = "DOT_RADIUS_PIXEL";
+        public final static String TEST_ID = "TEST_ID";
     }
 
     public static class INTS {
