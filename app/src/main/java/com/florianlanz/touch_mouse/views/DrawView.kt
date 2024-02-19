@@ -73,6 +73,7 @@ class DrawView(ctx: Context) : View(ctx) {
         val row2BottomY: Float = row2TopY + cellHeight
         val rect1 = RectF(beginX, row1TopY, endX, row1BottomY)
         val rect2 = RectF(beginX, row2TopY, endX, row2BottomY)
+        val dotRadiusPixel = mmToPixels(dotRadius.toFloat());
 
         // Draw Test area
         canvas.drawRect(beginX, pTop.toFloat(), endX, pTop.toFloat() + rows * cellHeight, paint)
@@ -162,7 +163,7 @@ class DrawView(ctx: Context) : View(ctx) {
                 canvas.drawCircle(
                     beginX + (i + 0.5f) * cellWidth,
                     row1TopY + 0.5f * cellHeight,
-                    mmToPixels(dotRadius.toFloat()),
+                    dotRadiusPixel,
                     paint
                 )
 
@@ -170,7 +171,7 @@ class DrawView(ctx: Context) : View(ctx) {
                 canvas.drawCircle(
                     beginX + (i + 0.5f) * cellWidth,
                     row2TopY + 0.5f * cellHeight,
-                    mmToPixels(dotRadius.toFloat()),
+                    dotRadiusPixel,
                     paint
                 )
             }
@@ -181,8 +182,9 @@ class DrawView(ctx: Context) : View(ctx) {
         // Send INIT GRID size message to desktop
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.GRID, rows, cols))
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SIZE, MainActivity.sizeX, MainActivity.sizeY))
-        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SYMBOLS, if (showSym) 1 else 0 , if (showLines) 1 else 0))
-        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.FAILS, if (showFails) 1 else 0 , 0))
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.SYMBOLS, if (showSym) 1 else 0, if (showLines) 1 else 0))
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.FAILS, if (showFails) 1 else 0, 0))
+        Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.DOTSIZEPX, dotRadiusPixel.toInt(), 0))
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.ROWS_ACTIVE, row1, row2))
         Networker.get().sendMemo(Memo(STRINGS.INTRO, STRINGS.TEST_ID, testId, 0))
 

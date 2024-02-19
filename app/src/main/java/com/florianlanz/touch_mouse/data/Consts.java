@@ -13,6 +13,7 @@ public class Consts {
         public final static String FAILS = "FAILS";
         public final static String ROWS_ACTIVE = "ROWS_ACTIVE";
         public final static String TEST_ID = "TEST_ID";
+        public final static String DOTSIZEPX = "DOT_SIZE_PX";
     }
 
     public static class INTS {
