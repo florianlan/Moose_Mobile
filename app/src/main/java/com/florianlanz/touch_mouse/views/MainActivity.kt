@@ -112,12 +112,11 @@ class MainActivity : AppCompatActivity() {
             Log.d("Coordinates", "down: $xDown;$yDown up: $xUp;$yUp")
             //save time of eventUp
 
-            //TODO: test if down and up coordinates works
             val memo = Memo(
                 STRINGS.EVENT,
                 STRINGS.TAP,
-                getStringOfCoord(xDown, yDown),
-                getStringOfCoord(xUp, yUp)
+                getStringOfCoord(xDown, yDown, xUp, yUp),
+                event.clickDuration
             )
             Networker.get().sendMemo(memo)
             Log.d("Memo", memo.toString())
@@ -150,8 +149,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getStringOfCoord(x: Int, y: Int): String {
-        return "$x,$y"
+    private fun getStringOfCoord(x1: Int, y1: Int, x2: Int, y2: Int): String {
+        return "$x1,$y1,$x2,$y2"
     }
 
 

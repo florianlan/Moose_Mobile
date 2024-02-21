@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 
-class EventWithCoordinates(val xDown: Int, val yDown: Int, val xUp: Int, val yUp: Int)
+class EventWithCoordinates(val xDown: Int, val yDown: Int, val xUp: Int, val yUp: Int, val clickDuration: Int)
 
 class SingleClickListener(private val clickAction: (event: EventWithCoordinates) -> Unit,
                           private val tapArea1: RectF
@@ -36,12 +36,12 @@ class SingleClickListener(private val clickAction: (event: EventWithCoordinates)
                 if (isTAPValid && event.getPointerId(event.actionIndex) == downPointerId) {
                     Log.d("TAP", "valid and is last finger")
                     val clickDuration = System.currentTimeMillis() - downTime
-                    if (clickDuration < 200) {
+                    if (clickDuration < 1000) {
                         Log.d("Memo", "is short click")
                         val xUp = event.getX(event.getPointerId(event.actionIndex)).toInt()
                         val yUp = event.getY(event.getPointerId(event.actionIndex)).toInt()
                         // Ausführen des Events für den kurzen Klick
-                        clickAction.invoke(EventWithCoordinates(xDown, yDown, xUp, yUp))
+                        clickAction.invoke(EventWithCoordinates(xDown, yDown, xUp, yUp, clickDuration.toInt()))
                     }
                 }
                 downPointerId = -1
