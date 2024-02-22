@@ -94,6 +94,11 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        // Do nothing to disable the back button
+    }
+
+
     /**
      * create grid
      */
